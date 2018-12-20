@@ -40,23 +40,22 @@ function setArrayFct($column, $value)
 
 function dateActuel($datePost)
 {
-	$now = new dateTime(date("Y-m-d H:i:s"));
-	$datePost = new dateTime($datePost);
-	$diff = $now->diff($datePost);
-	if($diff->d > 0)
-		return $diff->format("%d jours");
-	elseif ($diff->h > 0) {
-		return $diff->format("%h heures");
-	}
-	elseif ($diff->i > 0) {
-		return $diff->format("%i minutes");
-	}
-	elseif ($diff->s > 0) {
-		return $diff->format("%s secondes");
-	}
-	else {
-		return "0 secondes";
-	}
+	$now = strtotime(date("Y-m-d H:i:s"));
+	$datePost = strtotime($datePost);	
+	$diff = $now+3600 - $datePost;
+
+	if ($diff < 60)
+		return ($diff.' sec');
+	else if ($diff < 3600)
+		return (round($diff/60).' min');
+	else if ($diff < 86400)
+		return (round($diff/3600).' heures');
+	else if ($diff < 604800)
+		return (round($diff/86400).' jours');
+	else if ($diff < 31557600)
+		return (round($diff/604800).' semaines');
+	else
+		return (round($diff/31557600).' annees');
 }
 
 ?>
