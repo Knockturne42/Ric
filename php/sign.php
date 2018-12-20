@@ -9,7 +9,7 @@
 <?php
 	include 'formulaire.php';
 	$arrayInpName = array('pseudoUtilisateur', 'passwordUtilisateur', 'adresseEmailUtilisateur', 'numeroUtilisateur', 'submitSignUp');
-	$arrayInptype = array('text', 'text', 'text', 'password','submit');
+	$arrayInptype = array('text', 'password', 'text', 'text','submit');
 	$tryForm = new formulaire('signUp.php', 'post', 'signUpForm', $arrayInpName, $arrayInptype);
 	$tryForm->displayForm();
 

@@ -13,8 +13,9 @@ class requete extends connectionDb
 	private $connectTable;
 	private $condition;
 	private $setArray;
+	private $left;
 
-	public function __construct($dbConnectionArray, $columnArray, $valueArray, $tableName, $condition = array())
+	public function __construct($dbConnectionArray, $columnArray, $valueArray, $tableName, $left, $condition = '1 ')
 	{
 		$this->db = parent::__construct($dbConnectionArray[0], $dbConnectionArray[1], $dbConnectionArray[2], $dbConnectionArray[3]);
 		$this->columnArray = $columnArray;
@@ -23,6 +24,7 @@ class requete extends connectionDb
 		$this->queryDb = '';
 		$this->condition = $condition;
 		$this->setArray = setArrayFct($this->columnArray, $this->valueArray);
+		$this->left = $left;
 	}
 
 	public function __set($property, $value)
@@ -43,15 +45,16 @@ class requete extends connectionDb
 
 	public function selectDb()
 	{
-		$left = ' LEFT JOIN quiPropose ON proposition.idProposition = quiPropose.idProposition LEFT JOIN utilisateur ON quiPropose.idUtilisateur = utilisateur.idUtilisateur';
-			$this->queryDb = $this->db->prepare('SELECT '.arrayPrepare($this->columnArray, '').' FROM '.$this->tableName.$left.' WHERE 1 AND'.arrayPrepare($this->condition, ':').' 1');
-			$this->arrayBindParam($this->condition);
+
+			$this->queryDb = $this->db->prepare('SELECT '.arrayPrepare($this->columnArray, '').' FROM '.$this->tableName.$this->left.' WHERE '.$this->condition.'AND 1');
+			var_dump('SELECT '.arrayPrepare($this->columnArray, '').' FROM '.$this->tableName.$this->left.' WHERE '.$this->condition.'AND 1');
 			$this->queryDb->execute();
 	}
 
 	public function insertDb()
 	{
 		$this->queryDb = $this->db->prepare('INSERT INTO '.$this->tableName.'('.arrayPrepare($this->columnArray, '').') VALUES ('.arrayPrepare($this->columnArray, ':').')');
+		var_dump('INSERT INTO '.$this->tableName.'('.arrayPrepare($this->columnArray, '').') VALUES ('.arrayPrepare($this->columnArray, ':').')');
 		$this->arrayBindParam($this->columnArray);
 		$this->queryDb->execute();
 	}

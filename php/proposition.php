@@ -57,9 +57,11 @@ Class proposition{
 $columnArray = array('proposition.contentProposition', 'proposition.idProposition', 'proposition.dateProposition', 'utilisateur.pseudoUtilisateur');
 $valueArray = array('1', '9');
 $dbConnectionArray = array('localhost', 'giletjaune', 'test', 'test00');
-$conditionArray = array('');
+$condition = '';
+$left = ' LEFT JOIN quiPropose ON proposition.idProposition = quiPropose.idProposition LEFT JOIN utilisateur ON quiPropose.idUtilisateur = utilisateur.idUtilisateur ';
 
-$test = new requete($dbConnectionArray, $columnArray, $valueArray, 'proposition');
+
+$test = new requete($dbConnectionArray, $columnArray, $valueArray, 'proposition', $left);
 
 $test->selectDb();
 

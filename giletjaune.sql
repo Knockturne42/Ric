@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 19 déc. 2018 à 23:32
+-- Généré le :  jeu. 20 déc. 2018 à 22:05
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `proposition` (
   `contentProposition` text COLLATE utf8_bin NOT NULL,
   `dateProposition` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idProposition`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `proposition`
@@ -109,7 +109,22 @@ INSERT INTO `proposition` (`idProposition`, `contentProposition`, `datePropositi
 (6, 'de nouveau un test mais POfg2eere', '2018-12-19 14:07:34'),
 (7, 'de nouveau un test mais POfg2eere', '2018-12-19 14:09:13'),
 (8, 'de nouveau un tesfdhrherheht mais POfg2eere', '2018-12-19 14:17:16'),
-(9, 'de nouveau un tesfdhrherheht mais POfg2eere', '2018-12-19 14:21:05');
+(9, 'de nouveau un tesfdhrherheht mais POfg2eere', '2018-12-19 14:21:05'),
+(10, 'wbiwb wbiuw ', '2018-12-20 12:25:53'),
+(11, 'test changement d\'heure', '2018-12-20 14:51:22'),
+(12, 'nouveau test', '2018-12-20 15:13:16'),
+(13, 'lhfgeoghrwrgegrergewrgegwregwe', '2018-12-20 16:06:12'),
+(14, 'ytwyeywu54uuuuuuuuu', '2018-12-20 16:08:14'),
+(15, 'coucoucccccc', '2018-12-20 16:10:58'),
+(16, 'rgewrgewgqwgwg', '2018-12-20 16:12:38'),
+(17, 'wrtjeryjyhjjjjj', '2018-12-20 16:14:20'),
+(18, 'eeeeee', '2018-12-20 16:18:25'),
+(19, 'wtewthewthehwthww', '2018-12-20 16:50:59'),
+(20, 'BLABLANBLAAAALAKL:FNOEQrghep[jqwrgehrgeq', '2018-12-20 16:54:43'),
+(21, 'test n01', '2018-12-20 18:07:26'),
+(22, 'un nouveau test de form', '2018-12-20 18:08:14'),
+(23, 'ca marche toujours?', '2018-12-20 21:08:56'),
+(24, 'marche plus hein', '2018-12-20 22:00:35');
 
 -- --------------------------------------------------------
 
@@ -160,18 +175,23 @@ DROP TABLE IF EXISTS `utilisateur`;
 CREATE TABLE IF NOT EXISTS `utilisateur` (
   `idUtilisateur` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `pseudoUtilisateur` varchar(26) COLLATE utf8_bin NOT NULL,
+  `passwordUtilisateur` varchar(30) COLLATE utf8_bin NOT NULL,
   `adresseEmailUtilisateur` varchar(60) COLLATE utf8_bin NOT NULL,
   `numeroUtilisateur` int(11) NOT NULL,
   `dateInscription` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idUtilisateur`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`idUtilisateur`, `pseudoUtilisateur`, `adresseEmailUtilisateur`, `numeroUtilisateur`, `dateInscription`) VALUES
-(1, 'tbd', 'tbd@hotmail.fr', 786434814, '2018-12-19 22:56:16');
+INSERT INTO `utilisateur` (`idUtilisateur`, `pseudoUtilisateur`, `passwordUtilisateur`, `adresseEmailUtilisateur`, `numeroUtilisateur`, `dateInscription`) VALUES
+(1, 'tbd', '', 'tbd@hotmail.fr', 786434814, '2018-12-19 22:56:16'),
+(2, 'tbd2', '', 'tbd@gmail.com', 786434814, '2018-12-20 18:59:54'),
+(3, 'tbd5', 'testtest', 'test@ruewe.fr', 769485874, '2018-12-20 19:16:31'),
+(4, 'chris', 'chrisd', 'chris@gmail.com', 78456751, '2018-12-20 22:51:35'),
+(5, 'christt', 'christt', 'chris@gg.fr', 72535135, '2018-12-20 22:04:53');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
