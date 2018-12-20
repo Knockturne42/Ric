@@ -1,12 +1,20 @@
 <?php
 
+include_once 'input.php';
+
 class formulaire {
 	
+	private $formDebut;
+	private $formFin;
+	private $arrayNameInput;
+	private $arrayTypeInput;
 
 
-	public function __construct($actionForm, $methodForm, $nameForm, $arrayInput)
+	public function __construct($actionForm, $methodForm, $nameForm, $arrayNameInput, $arrayTypeInput)
 	{
 		$this->formDebut = '<form action="'.$actionForm.'" method="'.$methodForm.'" name="'.$nameForm.'">';
+		$this->arrayNameInput = $arrayNameInput;
+		$this->arrayTypeInput = $arrayTypeInput;
 		$this->formFin = '</form>';
 	}
 
@@ -25,38 +33,28 @@ class formulaire {
 		else
 			throw new Exception("property invalid", 1);
 	}
-}
 
-class input {
-	
-	private $nameInput;
-	private $typeInput;
-
-	public function __construct($nameInput, $typeInput)
+	public function arrayInputs($arrayNameInput, $arrayTypeInput)
 	{
-		$this->$nameInput = $nameInput;
-		$this->$typeInput = $typeInput;
+		$input = '';
+		foreach ($arrayNameInput as $key => $value) {
+			$tmp = new input($arrayNameInput[$key], $arrayTypeInput[$key]);
+			$input .= $tmp->assembleInput();
+		}
+		return $input;
 	}
 
-	public function __set($property, $value)
+	public function displayForm()
 	{
-		if(property_exists('input', $property))
-			$this->$property = $value;
-		else
-			throw new Exception("property invalid", 1);
-	}
-
-	public function __get($property)
-	{
-		if (property_exists('input', $property))
-			return($this->$property);
-		else
-			throw new Exception("property invalid", 1);
-	}
-
-	public assembleInput()
-	{
-		$this->input = '<input type="'.$this->typeInput.'" name="'.$this->nameInput.'">'
+		if(count($this->arrayNameInput) === count($this->arrayTypeInput))
+		{
+			echo $this->formDebut;
+			echo $this->arrayInputs($this->arrayNameInput, $this->arrayTypeInput);
+			echo $this->formFin;
+		}
+		else {
+			echo "form non cree";
+		}
 	}
 }
 

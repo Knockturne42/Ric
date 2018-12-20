@@ -7,12 +7,18 @@
 </head>
 <body>
 	<div class="billet"></div>
-	<form action="php/requete.php" method="post">
+<!-- 	<form action="php/requete.php" method="post">
 		<input type="text" name="contentCommentaire">
 		<input type="submit">
-	</form>
+	</form> -->
 	<?php
 	include 'php/proposition.php';
+	include 'php/formulaire.php';
+
+	$arrayInpName = array('contentProposition', 'submitProposition');
+	$arrayInptype = array('textarea', 'submit');
+	$tryForm = new formulaire('php/insertProposition.php', 'post', 'propositionForm', $arrayInpName, $arrayInptype);
+	$tryForm->displayForm();
 	// include 'php/requete.php';
 
 	// $columnArray = array('contentProposition', 'dateProposition');

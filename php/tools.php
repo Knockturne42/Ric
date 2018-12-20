@@ -42,7 +42,7 @@ function dateActuel($datePost)
 {
 	$now = strtotime(date("Y-m-d H:i:s"));
 	$datePost = strtotime($datePost);	
-	$diff = $now+3600 - $datePost;
+	$diff = $now - $datePost;
 
 	if ($diff < 60)
 		return ($diff.' sec');
