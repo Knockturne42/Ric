@@ -1,3 +1,5 @@
+<?php include_once 'php/session.php'; ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,6 +17,9 @@
 	$arrayInptype = array('textarea', 'submit');
 	$tryForm = new formulaire('php/insertProposition.php', 'post', 'propositionForm', $arrayInpName, $arrayInptype);
 	$tryForm->displayForm();
+	if (isset($_SESSION['utilisateur'])) {
+		var_dump($_SESSION['utilisateur']);
+	}
 ?>
 </body>
 </html>
